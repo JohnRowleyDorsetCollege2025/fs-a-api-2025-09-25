@@ -14,7 +14,7 @@ namespace fs_2025_a_api_demo_002.Data
                 PropertyNameCaseInsensitive = true
             };
 
-            string filePath = Path.Combine(AppContext.BaseDirectory, "Data", "courses.json");
+            string filePath = Path.Combine(AppContext.BaseDirectory, "Data", "coursedata.json");
             var jsonData = File.ReadAllText(filePath);
             Courses = JsonSerializer.Deserialize<List<CourseModel>>(jsonData, options) ?? new List<CourseModel>();
         }
