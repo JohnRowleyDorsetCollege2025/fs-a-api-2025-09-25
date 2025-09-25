@@ -8,13 +8,20 @@ namespace fs_2025_a_api_demo_002.Endpoints
         {
             app.MapGet("/courses", LoadAllCoursesAsync);
 
-            app.MapGet("/courses/{id:int}", (int id, CourseData courseData) =>
-            {
-                var course = courseData.Courses.FirstOrDefault(c => c.id == id);
-                return course is not null ? Results.Ok(course) : Results.NotFound();
-            });
+            app.MapGet("/courses/{id:int}",LoadCourseById);
 
          
+        }
+
+        private static async Task<IResult> LoadCourseById(CourseData courseData, int id)
+        {
+            var output = courseData.Courses.FirstOrDefault(c => c.id == id);
+            if (output is null)
+            {
+                return Results.NotFound();
+            }   
+            return Results.Ok(output);
+
         }
 
         private static async Task<IResult> LoadAllCoursesAsync(
