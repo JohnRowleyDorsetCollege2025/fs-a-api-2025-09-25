@@ -11,7 +11,11 @@ namespace fs_2025_a_api_demo_002.Endpoints
             app.MapGet("/courses/{id:int}",LoadCourseById);
 
          
+
+
         }
+
+     
 
         private static async Task<IResult> LoadCourseById(CourseData courseData, int id)
         {
